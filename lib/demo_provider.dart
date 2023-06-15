@@ -20,11 +20,21 @@ class _DemoProviderState extends State<DemoProvider> {
           child: MultiProvider(
             providers: [
               Provider(create: (context) => "Hello"),
-              Provider(create: (context) => 12345)
             ],
-            child: ParentWidget(
-                ChildrenWidget()
-            ),
+            builder: (context, child) {
+              return Provider(
+                  create: (context) => "Hello 123",
+                  builder: (contextProvider2, child){
+                    String valueProvider1 = Provider.of(context);
+                    String valueProvider2 = Provider.of(contextProvider2);
+                    return Column(
+                      children: [
+                        Text("$valueProvider1 \n $valueProvider2")
+                      ],
+                    );
+                  },
+              );
+            },
           )
         ),
       ),
@@ -55,11 +65,11 @@ class ChildrenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int number = Provider.of(context);
+    String string = context.watch();
     return Container(
       child: Column(
         children: [
-          Text("Children get number: $number"),
+          Text("Children get number: $string"),
         ],
       ),
     );
