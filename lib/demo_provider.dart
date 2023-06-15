@@ -17,8 +17,11 @@ class _DemoProviderState extends State<DemoProvider> {
       ),
       body: Container(
         child: Center(
-          child: Provider<String>(
-            create: (context) => "Hello",
+          child: MultiProvider(
+            providers: [
+              Provider(create: (context) => "Hello"),
+              Provider(create: (context) => 12345)
+            ],
             child: ParentWidget(
                 ChildrenWidget()
             ),
@@ -36,11 +39,11 @@ class ParentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String value = Provider.of(context);
+    String string = Provider.of(context);
     return Container(
       child: Column(
         children: [
-          Text("Parent get value: $value"),
+          Text("Parent get string: $string"),
           child
         ],
       ),
@@ -52,10 +55,11 @@ class ChildrenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int number = Provider.of(context);
     return Container(
       child: Column(
         children: [
-          Text("Children"),
+          Text("Children get number: $number"),
         ],
       ),
     );
