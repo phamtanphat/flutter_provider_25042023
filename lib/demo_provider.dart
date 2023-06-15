@@ -29,7 +29,7 @@ class _DemoProviderState extends State<DemoProvider> {
                     String valueProvider2 = Provider.of(contextProvider2);
                     return Column(
                       children: [
-                        Text("$valueProvider1 \n $valueProvider2")
+                        ParentWidget(ChildrenWidget())
                       ],
                     );
                   },
@@ -54,6 +54,9 @@ class ParentWidget extends StatelessWidget {
       child: Column(
         children: [
           Text("Parent get string: $string"),
+          ElevatedButton(onPressed: (){
+             Navigator.pushNamed(context, "/demo_listenable_provider");
+          }, child: Text("Navigate Screen")),
           child
         ],
       ),

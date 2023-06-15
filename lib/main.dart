@@ -17,7 +17,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DemoProvider()
+      routes: {
+        "/demo_provider": (context) => DemoProvider(),
+        "/demo_listenable_provider": (context) => DemoListenableProvider(),
+      },
+      initialRoute: "/demo_provider",
     );
   }
 }

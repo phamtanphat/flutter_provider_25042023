@@ -28,6 +28,10 @@ class _DemoListenableProviderState extends State<DemoListenableProvider> {
       body: Center(
         child: Container(
           child: ListenableProvider<Count>(
+            dispose: (context, count) {
+              print("Dispose");
+              count.dispose();
+            },
             create: (context) => Count(),
             child: CountWidget(),
           ),
