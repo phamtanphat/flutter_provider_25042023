@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_25042023/demo_listenable_provider.dart';
 import 'package:flutter_provider_25042023/demo_provider.dart';
+import 'package:flutter_provider_25042023/demo_valuelistenable_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,8 +21,9 @@ class MyApp extends StatelessWidget {
       routes: {
         "/demo_provider": (context) => DemoProvider(),
         "/demo_listenable_provider": (context) => DemoListenableProvider(),
+        "/demo_value_listenable_widget": (context) => DemoValueListenableWidget(),
       },
-      initialRoute: "/demo_provider",
+      initialRoute: "/demo_value_listenable_widget",
     );
   }
 }
