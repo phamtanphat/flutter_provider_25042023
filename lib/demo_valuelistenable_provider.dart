@@ -18,7 +18,19 @@ class DemoValueListenableWidget extends StatelessWidget {
         create: (context) => Counter(),
         child: Consumer<Counter>(
           builder: (context, counter, child) {
-            return Text(counter.count.value.toString());
+            return ValueListenableBuilder(
+                valueListenable: counter.count,
+                builder: (context, number, child){
+                  return Column(
+                    children: [
+                      ElevatedButton(onPressed: () {
+                          counter.count.value += 1;
+                      }, child: Text("Increase")),
+                      Text(number.toString())
+                    ]
+                  );
+                }
+            );
           },
         )
       ),
